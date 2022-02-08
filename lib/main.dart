@@ -36,7 +36,15 @@ class _MyHomePageState extends State<MyHomePage> {
   late String result11 = "0";
   late String operatorToPerform;
 
-  buttonCliked(String buttonValue) {
+  buttonClicked(String buttonValue) {
+    if (textToDisplay.length == 0 &&
+        (buttonValue == "+" ||
+            buttonValue == "-" ||
+            buttonValue == "x" ||
+            buttonValue == "/")) {
+      return;
+    }
+
     if (buttonValue == "C") {
       textToDisplay = "";
       textToDisplay11 = "";
@@ -56,20 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
       secondNumber = int.parse(textToDisplay);
       if (operatorToPerform == "+") {
         result = (firstNumber + secondNumber).toString();
-        //textToDisplay11 = textToDisplay11 + buttonValue;
       }
       if (operatorToPerform == "-") {
         result = (firstNumber - secondNumber).toString();
-        // textToDisplay11 = textToDisplay11 + buttonValue;
-
       }
       if (operatorToPerform == "x") {
         result = (firstNumber * secondNumber).toString();
-        //  textToDisplay11 = textToDisplay11 + buttonValue;
       }
       if (operatorToPerform == "/") {
         result = (firstNumber / secondNumber).toString();
-        // textToDisplay11 = textToDisplay11 + buttonValue;
       }
 
       result11 = result;
@@ -90,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(border: Border.all(color: Colors.black)),
         child: TextButton(
           // padding : EdgeInsets.all(25.0),
-          onPressed: () => buttonCliked(buttonValue),
+          onPressed: () => buttonClicked(buttonValue),
           child: Text(
             "$buttonValue",
             style: TextStyle(fontSize: 25.0),
@@ -112,7 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Expanded(
               child: Container(
-                //padding: EdgeInsets.all(00.0),
                 alignment: Alignment.bottomCenter,
                 child: Text(
                   "$textToDisplay11",
@@ -125,7 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Container(
-                //padding: EdgeInsets.all(0.0),
                 alignment: Alignment.bottomCenter,
                 child: Text(
                   "$result11",
